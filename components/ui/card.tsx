@@ -20,7 +20,7 @@ const _Card = React.forwardRef<HTMLDivElement, HTMLMotionProps<"div">>(
                 },
             }}
             className={cn(
-                "rounded-xl border bg-card text-card-foreground shadow",
+                "rounded-xl border dark:border-neutral-800 bg-card text-card-foreground shadow",
                 className,
             )}
             {...props}

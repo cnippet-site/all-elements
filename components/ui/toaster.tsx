@@ -22,7 +22,9 @@ export function Toaster() {
               <div className="flex flex-col gap-3">
                 <div className="space-y-1">
                   {title && <ToastTitle>{title}</ToastTitle>}
-                  {description && <ToastDescription>{description}</ToastDescription>}
+                  {description && (
+                    <ToastDescription>{description}</ToastDescription>
+                  )}
                 </div>
                 <div>{action}</div>
               </div>

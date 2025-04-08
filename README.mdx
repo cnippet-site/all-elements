@@ -9,12 +9,45 @@ A collection of reusable UI components and hooks for Next.js projects.
 3. Install the required dependencies:
 
 ```bash
-pnpm add @radix-ui/react-slot class-variance-authority react-dropzone cmdk @radix-ui/react-context-menu @radix-ui/react-slider @radix-ui/react-switch @internationalized/date react-aria-components react-dropzone @radix-ui/react-checkbox motion @radix-ui/react-radio-group @radix-ui/react-avatar @radix-ui/react-slot @radix-ui/react-tabs motion @radix-ui/react-dialog @radix-ui/react-slot vaul @radix-ui/react-popover @radix-ui/react-dialog @radix-ui/react-tooltip clsx tailwind-merge lucide-react recharts @radix-ui/react-collapsible @radix-ui/react-dropdown-menu @radix-ui/react-scroll-area @radix-ui/react-select sonner @radix-ui/react-toast
+pnpm add @radix-ui/react-slot @radix-ui/react-collapsible @radix-ui/react-dropdown-menu @radix-ui/react-scroll-area @radix-ui/react-avatar @radix-ui/react-slot @radix-ui/react-tabs  @radix-ui/react-select @radix-ui/react-dialog @radix-ui/react-slot @radix-ui/react-checkbox motion @radix-ui/react-radio-group @radix-ui/react-toast  @radix-ui/react-popover @radix-ui/react-dialog @radix-ui/react-tooltip @radix-ui/react-context-menu @radix-ui/react-slider @radix-ui/react-switch @radix-ui/react-separator @internationalized/date @remixicon/react vaul class-variance-authority react-dropzone cmdk react-aria-components react-dropzone tw-animate-css react-hook-form clsx tailwind-merge lucide-react recharts sonner motion zod @hookform/resolvers react-phone-number-input input-otp
 ```
-4. Add the following styles to your `styles/global.css` or `global.css` file:
+
+4. Add next-themes
+
+```bash
+pnpm add next-themes
+```
+
+Add next-themes to your `app/layout.tsx` file:
+
+```tsx
+import { ThemeProvider } from "@/components/theme-provider";
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <ThemeProvider
+      attribute="class"
+      defaultTheme="light"
+      enableSystem
+      disableTransitionOnChange
+    >
+      {children}
+    </ThemeProvider>
+  );
+}
+```
+
+5. Add the following styles to your `styles/global.css` or `global.css` file:
 
 ```css
 @import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:where(.dark, .dark *));
 
 :root {
   --background: oklch(1 0 0);
@@ -114,6 +147,22 @@ pnpm add @radix-ui/react-slot class-variance-authority react-dropzone cmdk @radi
     border-color: var(--color-gray-200, currentColor);
   }
 }
+
+/*
+    Disable scrollbar
+*/
+
+@layer base {
+  html {
+    height: -webkit-stretch;
+  }
+  body {
+    height: -webkit-stretch;
+  }
+  ::-webkit-scrollbar {
+    display: none;
+  }
+}
 ```
 
 ## Usage
@@ -121,15 +170,15 @@ pnpm add @radix-ui/react-slot class-variance-authority react-dropzone cmdk @radi
 Import and use components from the `components/ui` directory:
 
 ```tsx
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
 
 export default function Page() {
-  return <Button>Click me</Button>
+  return <Button>Click me</Button>;
 }
 ```
 
 Import and use hooks from the `hooks` directory:
 
 ```tsx
-import { useYourHook } from "@/hooks/your-hook"
+import { useYourHook } from "@/hooks/your-hook";
 ```
