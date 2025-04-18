@@ -2,7 +2,7 @@
 "use client";
 
 import { motion } from "motion/react";
-import { JSX, useEffect, useRef, useState } from "react";
+import { JSX, useEffect, useRef, useState, useCallback } from "react";
 
 export type SquareData = {
     id: number | string;
@@ -41,7 +41,7 @@ export const ShuffleGrid = ({
     const timeoutRef = useRef<NodeJS.Timeout | null>(null);
     const [squares, setSquares] = useState<JSX.Element[]>([]);
 
-    const generateSquares = () => {
+    const generateSquares = useCallback(() => {
         return shuffle([...squareData]).map((sq) => (
             <motion.div
                 key={sq.id}
@@ -54,11 +54,11 @@ export const ShuffleGrid = ({
                 }}
             ></motion.div>
         ));
-    };
+    }, [squareData]);
 
     useEffect(() => {
         setSquares(generateSquares());
-    }, [squareData]);
+    }, [generateSquares]);
 
     useEffect(() => {
         const shuffleSquares = () => {
@@ -71,7 +71,7 @@ export const ShuffleGrid = ({
         return () => {
             if (timeoutRef.current) clearTimeout(timeoutRef.current);
         };
-    }, [squareData, interval]);
+    }, [generateSquares, interval]);
 
     return <div className={gridClasses}>{squares}</div>;
 };
