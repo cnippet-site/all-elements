@@ -14,7 +14,7 @@ interface MasonryGridProps {
     className?: string;
 }
 
-export const MasonryGrid = React.forwardRef<HTMLDivElement, MasonryGridProps>(
+export const    MasonryGrid = React.forwardRef<HTMLDivElement, MasonryGridProps>(
     ({ children, className = "" }, ref) => (
         <div ref={ref} className={`container mx-auto p-4 ${className}`}>
             <div className="columns-2 gap-4 md:columns-3 2xl:columns-4">
