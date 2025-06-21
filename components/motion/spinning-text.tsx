@@ -18,7 +18,7 @@ export type SpinningTextProps = {
     };
 };
 
-const BASE_TRANSITION = {
+const BASE_TRANSITION: Transition = {
     repeat: Infinity,
     ease: "linear",
 };
